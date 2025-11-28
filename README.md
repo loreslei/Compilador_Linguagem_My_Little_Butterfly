@@ -1,8 +1,8 @@
 
 
-<img height="180" alt="Ayaya" width="180" align="left" src="https://github.com/user-attachments/assets/7944bfc5-a987-4f0c-8588-eb50b666ff9d" />
-
-<div id="user-content-toc">
+<div align="center"><img height="180" alt="Ayaya" width="180" src="https://github.com/user-attachments/assets/7944bfc5-a987-4f0c-8588-eb50b666ff9d" /></div>
+<br>
+<div id="user-content-toc" align="center">
   <ul>
   <summary><h1>Butterfly 💅🦋🩵</h1></summary>
   <summary><h3>SMiLE.dk</h3></summary>
@@ -10,92 +10,98 @@
 </div>
 <br>
 
-Ay, iyaiyai
-Ay, iyaiyai
-Ay, iyaiyai
-Where's my samurai?
+<div align="center">
 
-I've been searching for a man
-All across Japan
-Just to find, to find my samurai
-Someone who is strong
-But still a little shy
-Yes I need, I need my samurai
+Ay, iyaiyai <br>
+Ay, iyaiyai <br>
+Ay, iyaiyai <br>
+Where's my samurai? <br>
 
-Ay, ay, ay
-I'm your little butterfly
-Green, black and blue
-Make the colours in the sky
-Ay, ay, ay
-I'm your little butterfly
-Green, black and blue
-Make the colours in the sky
+I've been searching for a man <br>
+All across Japan <br>
+Just to find, to find my samurai <br>
+Someone who is strong <br>
+But still a little shy <br>
+Yes I need, I need my samurai <br>
 
-I've been searching in the woods
-And high upon the hills
-Just to find, to find my samurai
-Someone who won't regret
-To keep me in his net
-Yes I need, I need my samurai
-See upcoming pop shows
-Get tickets for your favorite artists
+Ay, ay, ay <br>
+I'm your little butterfly <br>
+Green, black and blue <br>
+Make the colours in the sky <br>
+Ay, ay, ay <br>
+I'm your little butterfly <br>
+Green, black and blue <br>
+Make the colours in the sky <br>
 
-You might also like
-She Knows
-J. Cole & Cults
-Rah Tah Tah
-Tyler, The Creator
-Family Matters
-Drake
+I've been searching in the woods <br>
+And high upon the hills <br>
+Just to find, to find my samurai <br>
+Someone who won't regret <br>
+To keep me in his net <br>
+Yes I need, I need my samurai <br>
+See upcoming pop shows <br>
+Get tickets for your favorite artists <br>
+ 
+You might also like <br>
+She Knows <br>
+J. Cole & Cults <br>
+Rah Tah Tah <br>
+Tyler, The Creator <br>
+Family Matters <br>
+Drake <br>
 
-Ay, ay, ay
-I'm your little butterfly
-Green, black and blue
-Make the colours in the sky
-Ay, ay, ay
-I'm your little butterfly
-Green, black and blue
-Make the colours in the sky
+Ay, ay, ay <br>
+I'm your little butterfly <br>
+Green, black and blue <br>
+Make the colours in the sky <br>
+Ay, ay, ay <br>
+I'm your little butterfly <br>
+Green, black and blue <br>
+Make the colours in the sky <br>
 
-Ay, iyaiyai
-Ay, iyaiyai
-Ay, iyaiyai
-Where's my samurai?
-Ay, iyaiyai
-Ay, iyaiyai
-Ay, iyaiyai
-Where's my samurai?
+Ay, iyaiyai <br>
+Ay, iyaiyai <br>
+Ay, iyaiyai <br>
+Where's my samurai? <br>
+Ay, iyaiyai <br>
+Ay, iyaiyai <br>
+Ay, iyaiyai <br>
+Where's my samurai? <br>
 
-Oh, oh, ah, ah, ah, ah
-Oh, oh, ah, ah, ah, ah
+Oh, oh, ah, ah, ah, ah <br>
+Oh, oh, ah, ah, ah, ah <br>
 
-Ay, ay, ay
-I'm your little butterfly
-Green, black and blue
-Make the colours in the sky
-Ay, ay, ay
-I'm your little butterfly
-Green, black and blue
-Make the colours in the sky
-Ay, ay, ay
-I'm your little butterfly
-Green, black and blue
-Make the colours in the sky
-Ay, ay, ay
-I'm your little butterfly
-Green, black and blue
-Make the colours in the sky
+Ay, ay, ay <br>
+I'm your little butterfly <br>
+Green, black and blue <br>
+Make the colours in the sky <br>
+Ay, ay, ay <br>
+I'm your little butterfly <br>
+Green, black and blue <br>
+Make the colours in the sky <br>
+Ay, ay, ay <br>
+I'm your little butterfly <br>
+Green, black and blue <br>
+Make the colours in the sky <br>
+Ay, ay, ay <br> 
+I'm your little butterfly <br>
+Green, black and blue <br>
+Make the colours in the sky <br>
 
-Ay, iyaiyai
-Ay, iyaiyai
-Ay, iyaiyai
-Where's my samurai?
-Ay, iyaiyai
-Ay, iyaiyai
-Ay, iyaiyai
-Where's my samurai?
+Ay, iyaiyai <br>
+Ay, iyaiyai <br>
+Ay, iyaiyai <br>
+Where's my samurai? <br>
+Ay, iyaiyai <br>
+Ay, iyaiyai <br>
+Ay, iyaiyai <br>
+Where's my samurai? <br>
 
-Ay, ay, ay
-I'm your little butterfly
-Green, black and blue
-Make the colours in the sky
+Ay, ay, ay <br>
+I'm your little butterfly <br>
+Green, black and blue <br>
+Make the colours in the sky <br>
+
+
+</div>
+
