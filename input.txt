@@ -1,0 +1,41 @@
+
+// For
+
+samurai ( x = 1 ; x < 3 ; x = x colorboost 1 ) {bostinha(x);};
+
+// While(s)
+
+x = 0; ayaya (x < 2) { bostinha("oi"); x = x colorboost 1;}; 
+
+loop = green; ayaya (loop) { bostinha(5 wingcut 2 multifly 6 EAST_SEA 3); loop = black;}; 
+
+// If(s)
+
+butterfly(1<2) { bostinha("🦄💜✅"); };
+
+butterfly(1>2) { bostinha("🦄💜💅"); };
+
+// If com Else
+
+butterfly(1>2) { bostinha("Acertou"); } dragonfly{ bostinha("Errou"); };
+
+// Switch Case belíssimo
+
+x = 2; colors_in_the_sky(x) { japan 1: bostinha("É um");     japan 2: {         bostinha("É dois");    }     japan 3: bostinha("É tres");     ocean: bostinha("Não sei o numero"); }
+
+// Soma
+
+bostinha(1 colorboost 2);
+
+// Subtração
+
+bostinha(1 wingcut 2);
+
+// Multiplicação
+
+bostinha(1 multifly 2);
+
+// Divisão
+
+bostinha(1 EAST_SEA 2);
+
