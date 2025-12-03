@@ -10,9 +10,8 @@ parser code {:
     public parser(scanner s){ this.s = s; }
 
     /* --- CLASSE AUXILIAR PARA O SWITCH --- */
-    /* Armazena o par: Valor de Comparação + Código a executar */
     static class CaseObs {
-        Supplier<Object> value; // null se for 'default'
+        Supplier<Object> value; 
         Runnable action;
         
         public CaseObs(Supplier<Object> val, Runnable act) {
@@ -27,8 +26,11 @@ scan with {: return s.next_token(); :};
 /* ---------- TERMINAIS ---------- */
 terminal SEMI, PLUS, MINUS, TIMES, DIV, UMINUS;
 terminal LPAREN, RPAREN, LBRACE, RBRACE;
+/* Terminais de Vetor */
+terminal LBRACK, RBRACK, COMMA; 
+
 terminal IF, ELSE, WHILE, FOR, PRINT;
-terminal COLON, SWITCH, CASE, DEFAULT; /* Novos Terminais */
+terminal COLON, SWITCH, CASE, DEFAULT; 
 terminal IGUAL, NOT, MENOR_QUE, MAIOR_QUE, MENOR_IGUAL, MAIOR_IGUAL, GETS;
 terminal Boolean TRUE, FALSE;
 terminal Double NUMBER;
@@ -40,15 +42,19 @@ non terminal Runnable stmt_list, stmt, if_stmt, while_stmt, for_stmt, block, swi
 non terminal Supplier<Object> expr, assignment_expr, any_expr;
 non terminal Supplier<Boolean> bool_expr;
 
-/* Novos Não Terminais para o Switch */
+/* Switch */
 non terminal List<CaseObs> case_list;
 non terminal CaseObs case_item;
+
+/* Vetores (Auxiliares para lista de argumentos [1, 2, 3]) */
+non terminal List<Supplier<Object>> arg_list;
 
 /* ---------- PRECEDÊNCIA ---------- */
 precedence left IGUAL, NOT, MENOR_QUE, MAIOR_QUE, MENOR_IGUAL, MAIOR_IGUAL;
 precedence left PLUS, MINUS;
 precedence left TIMES, DIV;
 precedence left UMINUS;
+precedence left LBRACK; /* Alta precedência para acesso a vetor */
 precedence right IF, ELSE;
 
 /* ---------- START ---------- */
@@ -70,11 +76,36 @@ stmt_list ::=
 
 stmt ::=
         assignment_expr:a SEMI {: RESULT = () -> { a.get(); }; :}
+      
+      /* --- ATRIBUIÇÃO EM POSIÇÃO DE VETOR: vetor[0] = 10; --- */
+      | WORD:nome LBRACK any_expr:idx RBRACK GETS any_expr:val SEMI
+        {:
+            RESULT = () -> {
+                Object listaObj = vars.get(nome);
+                Object indexObj = idx.get();
+                Object valor = val.get();
+
+                if (listaObj instanceof List && indexObj instanceof Double) {
+                    List<Object> lista = (List<Object>) listaObj;
+                    int i = ((Double) indexObj).intValue();
+                    
+                    // Garante tamanho (simples) ou lança erro se for OOB
+                    if (i >= 0 && i < lista.size()) {
+                        lista.set(i, valor);
+                    } else {
+                        System.err.println("Erro: Índice fora dos limites ou inválido: " + i);
+                    }
+                } else {
+                    System.err.println("Erro: Variável '" + nome + "' não é um vetor ou índice inválido.");
+                }
+            };
+        :}
+
       | any_expr:e SEMI        {: RESULT = () -> { e.get(); }; :}
       | if_stmt:i              {: RESULT = i; :}
       | while_stmt:w           {: RESULT = w; :}
       | for_stmt:f             {: RESULT = f; :}
-      | switch_stmt:sw         {: RESULT = sw; :} /* Adicionado */
+      | switch_stmt:sw         {: RESULT = sw; :}
       | block:b                {: RESULT = b; :}
       | PRINT LPAREN any_expr:e RPAREN SEMI
         {:
@@ -104,9 +135,58 @@ expr ::=
             {:
                 RESULT = () -> {
                     Object val = vars.get(nome);
-                    return (val == null) ? 0 : val;
+                    return (val == null) ? 0.0 : val;
                 };
             :}
+      
+      /* --- CRIAÇÃO DE VETOR LITERAL: [1, 2, 3] --- */
+      | LBRACK arg_list:args RBRACK
+        {:
+            RESULT = () -> {
+                List<Object> novaLista = new ArrayList<>();
+                for(Supplier<Object> s : args) {
+                    novaLista.add(s.get());
+                }
+                return novaLista;
+            };
+        :}
+
+      /* --- ACESSO A VETOR: nome[indice] --- */
+      | WORD:nome LBRACK any_expr:idx RBRACK
+        {:
+            RESULT = () -> {
+                Object listaObj = vars.get(nome);
+                Object indexObj = idx.get();
+                
+                if (listaObj instanceof List && indexObj instanceof Double) {
+                    List<Object> lista = (List<Object>) listaObj;
+                    int i = ((Double) indexObj).intValue();
+                    if (i >= 0 && i < lista.size()) {
+                        return lista.get(i);
+                    }
+                }
+                return 0.0; // Retorno padrão em caso de erro
+            };
+        :}
+      ;
+
+/* Regras auxiliares para lista de argumentos dentro de [] */
+arg_list ::=
+        arg_list:l COMMA any_expr:e
+        {:
+            l.add(e);
+            RESULT = l;
+        :}
+      | any_expr:e
+        {:
+            List<Supplier<Object>> l = new ArrayList<>();
+            l.add(e);
+            RESULT = l;
+        :}
+      | /* vazio */
+        {:
+            RESULT = new ArrayList<>();
+        :}
       ;
 
 bool_expr ::=
@@ -133,7 +213,7 @@ assignment_expr ::= WORD:nome GETS any_expr:val
 
 block ::= LBRACE stmt_list:l RBRACE {: RESULT = l; :};
 
-/* ---------- ESTRUTURAS DE CONTROLE EXISTENTES ---------- */
+/* ---------- ESTRUTURAS DE CONTROLE ---------- */
 if_stmt ::=
         IF LPAREN any_expr:e RPAREN stmt:s
             {:
@@ -180,9 +260,8 @@ for_stmt ::=
             :}
       ;
 
-/* ---------- SWITCH STATEMENT (NOVO) ---------- */
+/* ---------- SWITCH STATEMENT ---------- */
 
-/* Lista de casos: constrói uma ArrayList de CaseObs */
 case_list ::=
         case_list:l case_item:i
         {:
@@ -197,44 +276,34 @@ case_list ::=
         :}
       ;
 
-/* Item individual: 'case X: stmt' ou 'default: stmt' */
 case_item ::=
         CASE any_expr:e COLON stmt:s
-        {:
-            RESULT = new CaseObs(e, s);
-        :}
+        {: RESULT = new CaseObs(e, s); :}
       | DEFAULT COLON stmt:s
-        {:
-            // Default tem 'value' null para identificar
-            RESULT = new CaseObs(null, s);
-        :}
+        {: RESULT = new CaseObs(null, s); :}
       ;
 
-/* Lógica de execução do Switch */
 switch_stmt ::=
         SWITCH LPAREN any_expr:target RPAREN LBRACE case_list:cases RBRACE
         {:
             RESULT = () -> {
-                Object valAlvo = target.get(); // Valor do 'switch(X)'
+                Object valAlvo = target.get();
                 boolean executou = false;
 
-                // 1. Tenta encontrar um case correspondente
                 for (CaseObs c : cases) {
-                    // Se não for default e os valores forem iguais
                     if (c.value != null) {
                         Object valCase = c.value.get();
                         if (Objects.equals(valAlvo, valCase)) {
                             c.action.run();
                             executou = true;
-                            break; // Sai do switch após executar (Implicit Break)
+                            break; 
                         }
                     }
                 }
 
-                // 2. Se nenhum case rodou, procura o default
                 if (!executou) {
                     for (CaseObs c : cases) {
-                        if (c.value == null) { // É o default
+                        if (c.value == null) {
                             c.action.run();
                             break;
                         }

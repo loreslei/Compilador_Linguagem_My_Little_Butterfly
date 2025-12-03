@@ -5,14 +5,9 @@ set "flex=lib\jflex-full-1.9.1.jar"
 set "cup=lib\java-cup-11b.jar"
 set "libs=.;lib\java-cup-11b.jar;lib\java-cup-11b-runtime.jar;lib\jflex-1.8.2.jar"
 
-:: Gera o scanner e o parser mantendo seus nomes originais
 java -jar %flex% calc.flex
 java -jar %cup% -parser parser -symbols sym calc.cup
-
-:: Compila tudo
 javac -cp "%libs%" *.java
-
-:: Executa a Main enviando o arquivo input_teste.fly como entrada
-java -cp "%libs%" Main < input_teste.fly
-
-pause
+java -cp "%libs%" Main
+echo "" > teste.txt
+java parser teste.txt
