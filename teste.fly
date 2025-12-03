@@ -1,0 +1,45 @@
+// Insertion Sort pra Fly 🦋
+
+
+lista = [ 9, 3, 1, 5, 13, 2 ];
+n = 6; 
+
+bostinha("--- Vetor Original ---");
+samurai(k = 0; k < n; k = k colorboost 1) {
+    bostinha(lista[k]);
+};
+
+
+samurai (i = 1; i < n; i = i colorboost 1) {
+    
+    chave = lista[i];
+    j = i wingcut 1;
+    rodando = green; 
+
+    ayaya (rodando) {
+        
+        butterfly (j < 0) {
+            rodando = black; 
+        } dragonfly {
+            
+            valJ = lista[j];
+
+            butterfly (valJ > chave) {
+                lista[j colorboost 1] = valJ;
+                j = j wingcut 1;
+            } dragonfly {
+                rodando = black;
+            };
+        };
+    };
+
+    lista[j colorboost 1] = chave;
+};
+
+bostinha(" ");
+bostinha("--- Vetor Ordenado ---");
+
+
+samurai(k = 0; k < n; k = k colorboost 1) {
+    bostinha(lista[k]);
+};
