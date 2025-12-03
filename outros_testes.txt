@@ -1,8 +1,9 @@
+// For
 samurai (x = 1 ; x < 3 ; x = x colorboost 1) {
     bostinha(x);
 };
 
-
+// While(s)
 x = 0; 
 ayaya (x < 2) { 
     bostinha("oi"); 
@@ -15,14 +16,14 @@ ayaya (loop) {
     loop = black;
 }; 
 
-
+// If(s)
 butterfly(1<2) { bostinha("🦄💜✅"); };
 butterfly(1>2) { bostinha("🦄💜💅"); };
 
-
+// If e Else
 butterfly(1>2) { bostinha("Acertou"); } dragonfly{ bostinha("Errou"); };
 
-
+// Switch Case
 x = 2; 
 colors_in_the_sky(x) { 
     japan 1: bostinha("É um"); 
@@ -31,8 +32,7 @@ colors_in_the_sky(x) {
     ocean: bostinha("Não sei o numero"); 
 }
 
-// Comentario
-
+// Operações Aritméticas Simples
 
 bostinha(1 colorboost 2);
 bostinha(1 wingcut 2);
