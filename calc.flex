@@ -50,34 +50,42 @@ KDIV = EAST_SEA
 %%
 
 <YYINITIAL> {
-    /* 1. REGRAS DE IGNORE (Devem vir primeiro!) */
-    {Comment}     { /* Ignora comentários totalmente */ }
-    {WHITESPACE}  { /* Ignora espaços e quebras de linha */ }
+    {WHITESPACE}  { /**/ }
+    {STRING_DOUBLE} {String txt = yytext(); txt = txt.substring(1, txt.length()-1); return new Symbol(sym.STRING, yyline+1, yycolumn+1, txt);}
+    {STRING_SINGLE} {String txt = yytext();txt = txt.substring(1, txt.length()-1);return new Symbol(sym.STRING, yyline+1, yycolumn+1, txt);}
+    ";"           { return new Symbol(sym.SEMI, yyline+1, yycolumn+1);}
+    ":"           { return new Symbol(sym.COLON, yyline+1, yycolumn+1);}
+    {KADD}        { return new Symbol(sym.PLUS, yyline+1, yycolumn+1);}
+    {KSUB}        { return new Symbol(sym.MINUS, yyline+1, yycolumn+1);}
+    {KMULT}       { return new Symbol(sym.TIMES, yyline+1, yycolumn+1);}
+    {KDIV}        { return new Symbol(sym.DIV, yyline+1, yycolumn+1);}
 
-    
-    {STRING_DOUBLE} {String txt = yytext(); txt = txt.substring(1, txt.length()-1); return new Symbol(sym.STRING, txt);}
-    {STRING_SINGLE} {String txt = yytext();txt = txt.substring(1, txt.length()-1);return new Symbol(sym.STRING, txt);}
+    {KFOR}        { return new Symbol(sym.FOR, yyline+1, yycolumn+1);}
+    {KWHILE}      { return new Symbol(sym.WHILE, yyline+1, yycolumn+1);}
 
-    
-    ";"           { return new Symbol(sym.SEMI);}
-    ":"           { return new Symbol(sym.COLON);}
-    ","           { return new Symbol(sym.COMMA);}
-    
-    "("           { return new Symbol(sym.LPAREN);}
-    ")"           { return new Symbol(sym.RPAREN);}
-    "{"           { return new Symbol(sym.LBRACE);}
-    "}"           { return new Symbol(sym.RBRACE);}
-    "["           { return new Symbol(sym.LBRACK);}
-    "]"           { return new Symbol(sym.RBRACK);}
+    {KIF}         { return new Symbol(sym.IF, yyline+1, yycolumn+1); }
+    {KELSE}       { return new Symbol(sym.ELSE, yyline+1, yycolumn+1); }
+    {KSWITCH}     { return new Symbol(sym.SWITCH, yyline+1, yycolumn+1); }
+    {KCASE}       { return new Symbol(sym.CASE, yyline+1, yycolumn+1); }
+    {KDEFAULT}    { return new Symbol(sym.DEFAULT, yyline+1, yycolumn+1); }
+    //{KRETURN}     { return new Symbol(sym.RETURN, yyline+1, yycolumn+1);}
 
-    
-    "="           { return new Symbol(sym.GETS); }
-    "=="          { return new Symbol(sym.IGUAL); }
-    "!="          { return new Symbol(sym.NOT); }
-    "<"           { return new Symbol(sym.MENOR_QUE); }
-    ">"           { return new Symbol(sym.MAIOR_QUE); }
-    "<="          { return new Symbol(sym.MENOR_IGUAL); }
-    ">="          { return new Symbol(sym.MAIOR_IGUAL); }
+    {KTRUE}       { return new Symbol(sym.TRUE, yyline+1, yycolumn+1);}
+    {KFALSE}      { return new Symbol(sym.FALSE, yyline+1, yycolumn+1);}
+    {KPRINT}      { return new Symbol(sym.PRINT, yyline+1, yycolumn+1);}
+
+    "("           { return new Symbol(sym.LPAREN, yyline+1, yycolumn+1);}
+    ")"           { return new Symbol(sym.RPAREN, yyline+1, yycolumn+1);}
+    "{"           { return new Symbol(sym.LBRACE, yyline+1, yycolumn+1);}
+    "}"           { return new Symbol(sym.RBRACE, yyline+1, yycolumn+1);}
+
+    "="           { return new Symbol(sym.GETS, yyline+1, yycolumn+1); }
+    "=="          { return new Symbol(sym.IGUAL, yyline+1, yycolumn+1); }
+    "!="          { return new Symbol(sym.NOT, yyline+1, yycolumn+1); }
+    "<"           { return new Symbol(sym.MENOR_QUE, yyline+1, yycolumn+1); }
+    ">"           { return new Symbol(sym.MAIOR_QUE, yyline+1, yycolumn+1); }
+    "<="          { return new Symbol(sym.MENOR_IGUAL, yyline+1, yycolumn+1); }
+    ">="          { return new Symbol(sym.MAIOR_IGUAL, yyline+1, yycolumn+1); }
 
     
     {KADD}        { return new Symbol(sym.PLUS);}
@@ -96,10 +104,8 @@ KDIV = EAST_SEA
     {KFALSE}      { return new Symbol(sym.FALSE);}
     {KPRINT}      { return new Symbol(sym.PRINT);}
 
-    
-    {DIGIT}       { return new Symbol(sym.NUMBER, Double.parseDouble(yytext())); }
-    {WORD}        { return new Symbol(sym.WORD, yytext()); }
-    
- 
-    .             { System.err.println("Caractere ilegal ignorado: " + yytext()); }
+    {DIGIT}       { return new Symbol(sym.NUMBER, yyline+1, yycolumn+1, Double.parseDouble(yytext())); }
+    {WORD}        { return new Symbol(sym.WORD, yyline+1, yycolumn+1, yytext()); }
+    .             { System.err.println("Caractere ilegal na linha " + (yyline+1) + ", coluna " + (yycolumn+1) + ": " + yytext()); }
 }
+

@@ -7,7 +7,16 @@ parser code {:
     scanner s;
     Map<String, Object> vars = new HashMap<>();
 
-    public parser(scanner s){ this.s = s; }
+    public parser(scanner s){ this.s = s; 
+    }
+    @Override
+    public void syntax_error(Symbol s) {
+        // s.left guarda a LINHA
+        // s.right guarda a COLUNA
+        System.err.println("Erro de sintaxe na Linha " + s.left + ", Coluna " + s.right);
+        
+    }
+    
 
     /* --- CLASSE AUXILIAR PARA O SWITCH --- */
     static class CaseObs {
@@ -199,6 +208,7 @@ bool_expr ::=
       | TRUE                         {: RESULT = () -> true;  :}
       | FALSE                        {: RESULT = () -> false; :}
       | LPAREN bool_expr:b RPAREN    {: RESULT = b; :}
+      
       ;
 
 assignment_expr ::= WORD:nome GETS any_expr:val

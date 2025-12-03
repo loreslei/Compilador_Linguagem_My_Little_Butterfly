@@ -373,7 +373,16 @@ public class parser extends java_cup.runtime.lr_parser {
     scanner s;
     Map<String, Object> vars = new HashMap<>();
 
-    public parser(scanner s){ this.s = s; }
+    public parser(scanner s){ this.s = s; 
+    }
+    @Override
+    public void syntax_error(Symbol s) {
+        // s.left guarda a LINHA
+        // s.right guarda a COLUNA
+        System.err.println("Erro de sintaxe na Linha " + s.left + ", Coluna " + s.right);
+        
+    }
+    
 
     /* --- CLASSE AUXILIAR PARA O SWITCH --- */
     static class CaseObs {
