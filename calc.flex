@@ -91,7 +91,7 @@ KDIV = EAST_SEA
     {DIGIT}       { return new Symbol(sym.NUMBER, yyline+1, yycolumn+1, Double.parseDouble(yytext())); }
     {WORD}        { return new Symbol(sym.WORD, yyline+1, yycolumn+1, yytext()); }
     
-    /* Correção: EOF com coordenadas */
+    
     <<EOF>>       { return new Symbol(sym.EOF, yyline+1, yycolumn+1); }
 
     .             { System.err.println("Caractere ilegal: " + yytext()); }

@@ -1,5 +1,5 @@
 // For
-samurai (x = 1 ; x < 3 ; x = x colorboost 1) {
+samurai (x = 1 ; x <= 3 ; x = x colorboost 1) {
     bostinha(x);
 };
 

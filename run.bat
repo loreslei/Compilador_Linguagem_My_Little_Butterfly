@@ -36,7 +36,7 @@ if %errorlevel% neq 0 (
 
 echo.
 echo ==========================================
-echo 4. Executando Main com teste.fly
+echo 4. Executando Main .fly
 echo ==========================================
 :: Verifica se o arquivo Main.class realmente existe antes de rodar
 if not exist Main.class (
@@ -44,7 +44,7 @@ if not exist Main.class (
     goto erro
 )
 
-java -Dfile.encoding=UTF-8 -cp "%libs%" Main teste.fly
+java -Dfile.encoding=UTF-8 -cp "%libs%" Main outros_testes.fly
 
 echo.
 echo AYAYAY IM YOUR LIRO 🧈FLY
